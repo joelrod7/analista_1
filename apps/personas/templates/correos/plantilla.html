@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Emma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display&display=swap" rel="stylesheet">
+  <style type="text/css">
+    * {
+      margin: 0px;
+      padding: 0px;
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      height: 100%;
+      font-family: "Red Hat Display";
+    }
+
+    p,
+    li,
+    a,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    td {
+      font-family: "Red Hat Display";
+      font-size: 14px;
+      line-height: 1.7;
+      color: #666666;
+      margin: 0px;
+    }
+
+    .limiter {
+      width: 100%;
+    }
+
+    .container-login100 {
+      border-collapse: collapse;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      background: #fff;
+      border: 9px solid #ebeeef;
+    }
+
+
+    .wrap-login100 {
+      width: 670px;
+      overflow: hidden;
+      margin: 0 auto;
+
+    }
+
+    .login100-form-title {
+      width: 100%;
+      padding: 5% 0 0 0;
+    }
+
+    .body-msg {
+      padding: 2% 10%;
+      text-align: justify;
+    }
+
+    .msg {
+      padding: 2% 10%;
+      text-align: justify;
+    }
+    .rojo {
+    color: red;
+}
+    .msg-list {
+      padding: 0 10% 0 15%;
+      text-align: justify;
+      color: #757575;
+    }
+
+    .conta {
+      padding: 10px 0px;
+      /* background: #dadada; */
+      text-align: center;
+    }
+
+    td.copy {
+      text-align: center;
+      padding: 10px;
+      color: #757575;
+      /* background-color: white; */
+    }
+
+    .titulo {
+      color: #757575;
+      font-size: 20px;
+      font-weight: 700;
+      /* background-color: white; */
+    }
+
+    .importante {
+      font-family: "Red Hat Display";
+      font-size: 18px;
+      font-weight: 600;
+      color: #ffffff;
+      background: #B70E0C;
+      margin: 0 0 25px;
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      margin: 10px 0px;
+    }
+
+    .lista {
+      color: #757575;
+      margin-left: 5%;
+    }
+
+    /*------------------------------------------------------------------
+		[ Responsive ]*/
+
+    @media (max-width: 700px) {
+      .container-login100 {
+        padding: 0;
+      }
+
+      .wrap-login100 {
+        width: 100%;
+      }
+
+      .body-msg {
+        padding: 0% 5% 0% 5%;
+      }
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="limiter">
+    <table class="container-login100">
+      <thead class="wrap-login100">
+        <tr>
+          <th class="login100-form-title">
+            <img src="https://backend.cuc.edu.co/media/adjuntos/genericas/e52bb734dcbe43e8960a92a99c0d25d4.png" alt="" width="150" style="display:block;margin:auto;">
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="msg">
+            <h2 class="titulo">{{titulo}}</h2>
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+        </tr>
+        {% if mensajes %}
+        {% for m in mensajes %}
+        {% if m.clase == 'lista' %}
+        {% for lis in m.mensaje %}
+        <tr>
+          <td class="msg-list">
+            {% if lis.link %}
+            <li>{{lis.item}}<a target="_black" href="{{lis.link}}">Aquí</a></li>
+            {% else %}
+            {% if lis.url %}
+            <li class='link'>{{lis.mensaje}} <a target="_black" href="{{lis.url}}">{{lis.nombre}}</a></li>
+            {% else %}
+            <li>{{lis.item}}</li>
+            {% endif %}
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        {% if m.clase == 'link' %}
+        <tr>
+          <td class="msg">
+            <p class={{m.clase}}>{{m.mensaje}}</p> <a target="_black" href="{{m.url}}">{{m.nombre}}</a>
+          </td>
+        </tr>
+        {% else %}
+        <tr>
+          <td class="msg">
+            <p class={{m.clase}}>{{m.mensaje}}</p>
+          </td>
+        </tr>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% else %}
+        <tr>
+          <td>Sin mensajes</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td class="msg">¡Gracias!</td>
+        </tr>
+
+        <tr>
+          {% if nota %}
+          <td class="msg"><strong>*Nota: </strong>{{nota}}</td>
+          {% else %}
+          <td class="msg"><strong>*Nota: </strong>Este correo electrónico es solo de notificaciones automáticas. Por favor no responder.</td>
+          {% endif %}
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td class="conta">
+            <img src="https://backend.cuc.edu.co/media/adjuntos/genericas/8390e5bde14149ce8c7d3ecd05297279.png" alt="" width=400px">
+          </td>
+        </tr>
+        <tr>
+          <td class="copy">Copyright © Universidad de la costa CUC {% now 'Y' %}.</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</body>
+
+</html>
+<html>
+
+<head>
+  <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=utf-8">
+  <meta name="Robots" content="NOINDEX " />
+</head>
+
+<body></body>
+<script type="text/javascript">
+  var gearPage = document.getElementById('GearPage');
+  if (null != gearPage) {
+    gearPage.parentNode.removeChild(gearPage);
+    document.title = "Error";
+  }
+</script>
+
+</html>
